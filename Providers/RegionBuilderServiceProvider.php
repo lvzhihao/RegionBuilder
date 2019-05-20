@@ -26,6 +26,9 @@ class RegionBuilderServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->commands([
+            \Modules\RegionBuilder\Console\RegionBuilderCommand::class,
+        ]);
     }
 
     /**
