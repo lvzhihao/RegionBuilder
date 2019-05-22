@@ -5,6 +5,13 @@ namespace Modules\RegionBuilder\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
+use Modules\RegionBuilder\Entities\Cities;
+use Modules\RegionBuilder\Observers\CitiesObserver;
+use Modules\RegionBuilder\Entities\Areas;
+use Modules\RegionBuilder\Observers\AreasObserver;
+use Modules\RegionBuilder\Entities\Streets;
+use Modules\RegionBuilder\Observers\StreetsObserver;
+
 class RegionBuilderServiceProvider extends ServiceProvider
 {
     /**
@@ -29,6 +36,9 @@ class RegionBuilderServiceProvider extends ServiceProvider
         $this->commands([
             \Modules\RegionBuilder\Console\RegionBuilderCommand::class,
         ]);
+        Cities::observe(CitiesObserver::class);
+        Areas::observe(AreasObserver::class);
+        Streets::observe(StreetsObserver::class);
     }
 
     /**

@@ -12,7 +12,7 @@ class Regions extends JsonResource
      * @param  \Illuminate\Http\Request
      * @return array
      */
-    public function toArray($request = null)
+    public function toArray($request)
     {
         return [
             'name' => $this->name,
