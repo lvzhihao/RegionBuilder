@@ -58,6 +58,7 @@ class RegionBuilderCommand extends Command
             $tablename = $option['tablename'];
             $this->createTable($tablename, boolval($option['force']));
             $this->import($tablename, $argument['level']);
+            $this->importExt($tablename, $argument['level']);
             //DB::commit();
         } catch (\Exception $e) {
             //DB::rollBack();
@@ -142,7 +143,7 @@ class RegionBuilderCommand extends Command
             $table->integer('pid')->unsigned()->default(0)->comment('父类自增ID');
             $table->integer('region_grade')->unsigned()->default(0)->comment('地区层级');
             $table->string('name', 30)->comment('名称');
-            $table->string('code', 12)->comment("行政区代码");
+            $table->string('code', 12)->nullable()->comment("行政区代码");
             $table->string('province_code', 2)->nullable()->comment("省份、直辖市、自治区");
             $table->string('city_code', 4)->nullable()->comment("城市");
             $table->string('area_code', 6)->nullable()->comment("区县");
@@ -168,6 +169,26 @@ class RegionBuilderCommand extends Command
                 $model->region_grade = $i;
                 $model->save();
                 $this->info($model);
+            }
+        }
+    }
+
+    /**
+     * import region table for 港澳台
+     *
+     * @return void
+     */
+    protected function importExt($tablename, $level=1) {
+        $provinces = json_decode(file_get_contents(dirname(__FILE__) . "/../Resources/regions/HK-MO-TW.json"));
+        foreach($provinces AS $key=>$cities) {
+            $provinceId = DB::table($tablename)->insertGetId(['name'=>$key, 'region_grade'=>1]);
+            if($level < 2) continue;
+            foreach($cities AS $key=>$areas) {
+                $cityId = DB::table($tablename)->insertGetId(['name'=>$key, 'pid'=>$provinceId, 'region_grade'=>2]);
+                if ($level < 3) continue;
+                foreach($areas AS $key) {
+                    DB::table($tablename)->insertGetId(['name'=>$key, 'pid'=>$cityId, 'region_grade'=>3]);
+                }
             }
         }
     }
