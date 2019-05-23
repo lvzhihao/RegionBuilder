@@ -1,6 +1,8 @@
 {
     "name": "edwinlll/regionbuilder",
     "description": "china region table generator",
+    "license": "MIT",
+    "homepage": "https://github.com/lvzhihao/RegionBuilder",
     "authors": [
         {
             "name": "lvzhihao",
