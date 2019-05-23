@@ -1,10 +1,10 @@
 {
-    "name": "shopex/regionbuilder",
-    "description": "",
+    "name": "edwinlll/regionbuilder",
+    "description": "china region table generator",
     "authors": [
         {
             "name": "lvzhihao",
-            "email": "edwin.lzh#gmail.com"
+            "email": "edwin.lzh@gmail.com"
         }
     ],
     "extra": {
