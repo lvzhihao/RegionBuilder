@@ -3,43 +3,13 @@
 composer require edwinlll/regionbuilder
 ```
 
-# 2. Require Laravel Module
-
-### 1. Laravel has been used
-
-* Require Laravel 5.6 and Laravel Module V3 
-
-```
-composer require nwidart/laravel-modules
-```
-* Use Module
-
-```
-php artisan module:update edwinlll/regionbuilder
-```
-
-### 2. Don't use Laravel
+# 2. Require Laravel 
 
 * create Laravel projects:
 
 ```
 composer global require laravel/installer
 laravel new regions
-cd regions
-composer require nwidart/laravel-modules
-```
-
-* Autoloading
-
-```
-{
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/",
-      "Modules\\": "Modules/"
-    }
-  }
-}
 ```
 
 # 3. Example
