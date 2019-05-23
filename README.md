@@ -15,7 +15,7 @@ composer require nwidart/laravel-modules
 * Use Module
 
 ```
-php artisan module:update regionbuilder
+php artisan module:update edwinlll/regionbuilder
 ```
 
 ### 2. Don't use Laravel
