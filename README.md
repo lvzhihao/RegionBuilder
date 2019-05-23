@@ -25,6 +25,8 @@ php artisan module:update regionbuilder
 ```
 composer global require laravel/installer
 laravel new regions
+cd regions
+composer require nwidart/laravel-modules
 ```
 
 * Autoloading
